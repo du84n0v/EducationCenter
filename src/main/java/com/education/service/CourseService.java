@@ -38,7 +38,7 @@ public class CourseService {
                 course.getDuration());
     }
 
-    public List<CourseDTO> getAllStudent() {
+    public List<CourseDTO> getAllCourse() {
         Iterable<Course> optional = courseRepository.findAll();
         List<CourseDTO> result = new LinkedList<>();
         for (Course course : optional) {

@@ -1,7 +1,6 @@
 package com.education.controller;
 
 import com.education.dto.CourseDTO;
-import com.education.entity.Course;
 import com.education.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +28,7 @@ public class CourseController {
 
     @GetMapping("/list")
     public ResponseEntity<List<CourseDTO>> courseList(){
-        return ResponseEntity.ok(courseService.getAllStudent());
+        return ResponseEntity.ok(courseService.getAllCourse());
     }
 
     @PutMapping("/by-id/{id}")
