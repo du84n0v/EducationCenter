@@ -1,0 +1,186 @@
+###create stundent
+POST localhost:8080/student/create
+Content-Type: application/json
+
+{
+  "name": "Alish",
+  "surname": "Alishev",
+  "level": 2,
+  "age": 23,
+  "gender": "MALE"
+}
+
+###create stundent
+POST localhost:8080/student/create
+Content-Type: application/json
+
+{
+  "name": "Nozik",
+  "surname": "Nozikeva",
+  "level": 1,
+  "age": 20,
+  "gender": "FEMALE"
+}
+
+### 1-Student
+POST localhost:8080/student/create
+Content-Type: application/json
+
+{
+  "name": "Sardor",
+  "surname": "Adilov",
+  "level": 3,
+  "age": 21,
+  "gender": "MALE"
+}
+
+### 2-Student
+POST localhost:8080/student/create
+Content-Type: application/json
+
+{
+  "name": "Madina",
+  "surname": "Rasulova",
+  "level": 1,
+  "age": 19,
+  "gender": "FEMALE"
+}
+
+### 3-Student
+POST localhost:8080/student/create
+Content-Type: application/json
+
+{
+  "name": "Javohir",
+  "surname": "Toirov",
+  "level": 4,
+  "age": 22,
+  "gender": "MALE"
+}
+
+### 4-Student
+POST localhost:8080/student/create
+Content-Type: application/json
+
+{
+  "name": "Laylo",
+  "surname": "Sharipova",
+  "level": 2,
+  "age": 20,
+  "gender": "FEMALE"
+}
+
+### 5-Student
+POST localhost:8080/student/create
+Content-Type: application/json
+
+{
+  "name": "Temur",
+  "surname": "Ismoilov",
+  "level": 1,
+  "age": 18,
+  "gender": "MALE"
+}
+
+### 6-Student
+POST localhost:8080/student/create
+Content-Type: application/json
+
+{
+  "name": "Zuhra",
+  "surname": "Karimova",
+  "level": 3,
+  "age": 21,
+  "gender": "FEMALE"
+}
+
+### 7-Student
+POST localhost:8080/student/create
+Content-Type: application/json
+
+{
+  "name": "Bekzod",
+  "surname": "Umarov",
+  "level": 2,
+  "age": 23,
+  "gender": "MALE"
+}
+
+### 8-Student
+POST localhost:8080/student/create
+Content-Type: application/json
+
+{
+  "name": "Nigora",
+  "surname": "Aliyeva",
+  "level": 4,
+  "age": 24,
+  "gender": "FEMALE"
+}
+
+### 9-Student
+POST localhost:8080/student/create
+Content-Type: application/json
+
+{
+  "name": "Farrux",
+  "surname": "Hoshimov",
+  "level": 1,
+  "age": 19,
+  "gender": "MALE"
+}
+
+### 10-Student
+POST localhost:8080/student/create
+Content-Type: application/json
+
+{
+  "name": "Dilnoza",
+  "surname": "Sultonova",
+  "level": 2,
+  "age": 20,
+  "gender": "FEMALE"
+}
+
+###get student list
+
+GET localhost:8080/student/list
+
+###get by id
+GET localhost:8080/student/by-id/2
+
+###update
+PUT localhost:8080/student/update/2
+Content-Type: application/json
+
+{
+  "name": "Lola",
+  "surname": "Nozikeva",
+  "level": 1,
+  "age": 20,
+  "gender": "FEMALE"
+}
+
+###delete
+DELETE localhost:8080/student/by-id/1
+
+###get by name
+GET localhost:8080/student/by-name/Nigora
+
+###get by surname
+GET localhost:8080/student/by-surname/Umarov
+
+###get by level
+GET localhost:8080/student/by-level/1
+
+###get by age
+GET localhost:8080/student/by-age/20
+
+###get by gender
+GET localhost:8080/student/by-gender/MALE
+
+###get by date
+GET localhost:8080/student/by-date/2026-05-02T12:20:21.681920
+
+###get between dates
+GET localhost:8080/student/by-between-date/2026-05-02T00:00:00/2026-05-02T23:59:59
