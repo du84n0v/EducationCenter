@@ -22,13 +22,7 @@ public class StudentService {
         Iterable<Student> students = studentRepository.findAll();
         List<StudentDTO> response = new LinkedList<>();
         for(Student student :students){
-            StudentDTO dto = new StudentDTO();
-            dto.setName(student.getName());
-            dto.setSurname(student.getSurname());
-            dto.setLevel(student.getLevel());
-            dto.setAge(student.getAge());
-            dto.setGender(student.getGender());
-            response.add(dto);
+            response.add(studentToDTO(student));
         }
         return response;
     }

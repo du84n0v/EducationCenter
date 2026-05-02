@@ -1,0 +1,143 @@
+### 1-Course
+POST localhost:8080/course/create
+Content-Type: application/json
+
+{
+  "name": "Java Backend (Spring Boot)",
+  "duration": 6,
+  "price": 500.0
+}
+
+### 2-Course
+POST localhost:8080/course/create
+Content-Type: application/json
+
+{
+  "name": "Frontend (React.js)",
+  "duration": 5,
+  "price": 450.0
+}
+
+### 3-Course
+POST localhost:8080/course/create
+Content-Type: application/json
+
+{
+  "name": "Python for Data Science",
+  "duration": 7,
+  "price": 550.0
+}
+
+### 4-Course
+POST localhost:8080/course/create
+Content-Type: application/json
+
+{
+  "name": "Flutter Mobile Development",
+  "duration": 4,
+  "price": 400.0
+}
+
+### 5-Course
+POST localhost:8080/course/create
+Content-Type: application/json
+
+{
+  "name": "UI/UX Design",
+  "duration": 3,
+  "price": 300.0
+}
+
+### 6-Course
+POST localhost:8080/course/create
+Content-Type: application/json
+
+{
+  "name": "Foundation (C & Algorithm)",
+  "duration": 2,
+  "price": 200.0
+}
+
+### 7-Course
+POST localhost:8080/course/create
+Content-Type: application/json
+
+{
+  "name": "Cyber Security",
+  "duration": 8,
+  "price": 700.0
+}
+
+### 8-Course
+POST localhost:8080/course/create
+Content-Type: application/json
+
+{
+  "name": "Go (Golang) Microservices",
+  "duration": 5,
+  "price": 480.0
+}
+
+### 9-Course
+POST localhost:8080/course/create
+Content-Type: application/json
+
+{
+  "name": "DevOps & Cloud (AWS)",
+  "duration": 6,
+  "price": 600.0
+}
+
+### 10-Course
+POST localhost:8080/course/create
+Content-Type: application/json
+
+{
+  "name": "Database Design (PostgreSQL)",
+  "duration": 3,
+  "price": 250.0
+}
+
+###create course
+POST localhost:8080/course/create
+Content-Type: application/json
+
+{
+  "name": "Math",
+  "duration": 10,
+  "price": 98.0
+}
+
+###by id
+GET localhost:8080/course/by-id/6
+
+###list
+GET localhost:8080/course/list
+
+###update by id
+PUT localhost:8080/course/by-id/11
+Content-Type: application/json
+
+{
+  "name": "Physics",
+  "price": 100.0,
+  "duration": 7
+}
+
+###delete
+DELETE localhost:8080/course/by-id/11
+
+###by-name
+GET localhost:8080/course/by-name/De
+
+###by-price
+GET localhost:8080/course/by-price/300
+
+###by-duration
+GET localhost:8080/course/by-duration/5
+
+###by-price
+GET localhost:8080/course/between-price/500/1000
+
+###by-price
+GET localhost:8080/course/between-date/2026-05-02T14:28:16.913523/2026-05-02T14:28:38.198095
