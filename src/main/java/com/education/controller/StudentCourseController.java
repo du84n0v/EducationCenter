@@ -73,4 +73,62 @@ public class StudentCourseController {
                                                                     @PathVariable Integer courseId){
         return ResponseEntity.ok(service.getStudentMarkOnCourse(studentId, courseId));
     }
+
+    @GetMapping("/student-last-mark/{studentId}")
+    public ResponseEntity<StudentMarkDto> lastMark(@PathVariable Integer studentId){
+        return ResponseEntity.ok(service.getStudentLastMark(studentId));
+    }
+
+    @GetMapping("/top-3-mark/{studentId}")
+    public ResponseEntity<List<StudentMarkDto>> top3Mark(@PathVariable Integer studentId){
+        return ResponseEntity.ok(service.getStudentTop3Mark(studentId));
+    }
+
+    @GetMapping("/student-first-mark/{studentId}")
+    public ResponseEntity<StudentMarkDto> firstMark(@PathVariable Integer studentId){
+        return ResponseEntity.ok(service.getStudentFirstMark(studentId));
+    }
+
+    @GetMapping("/first-course-mark/{studentId}")
+    public ResponseEntity<StudentMarkDto> firstCourseFirstMark(@PathVariable Integer studentId){
+        return ResponseEntity.ok(service.getFirstCourseFirstMark(studentId));
+    }
+
+    @GetMapping("/top-mark-on-course/{studentId}/{courseId}")
+    public ResponseEntity<StudentMarkDto> topMarkOnCourse(@PathVariable Integer studentId,
+                                                          @PathVariable Integer courseId){
+        return ResponseEntity.ok(service.getStudentTopMarkOnCourse(studentId, courseId));
+    }
+
+    @GetMapping("/avg-mark/{studentId}")
+    public ResponseEntity<Double> avgMark(@PathVariable Integer studentId){
+        return ResponseEntity.ok(service.getStudentAvgMark(studentId));
+    }
+
+    @GetMapping("/avg-student-mark-on-course/{studentId}/{courseId}")
+    public ResponseEntity<Double> avgStudentMarkOnCourse(@PathVariable Integer studentId,
+                                                          @PathVariable Integer courseId){
+        return ResponseEntity.ok(service.getStudentAvgMarkOnCourse(studentId, courseId));
+    }
+
+    @GetMapping("/count-of-mark-greater-then/{studentId}/{targetMark}")
+    public ResponseEntity<Integer> countMarkGreater(@PathVariable Integer studentId,
+                                                    @PathVariable Double targetMark){
+        return ResponseEntity.ok(service.getMarkCountGreaterThenTarget(studentId, targetMark));
+    }
+
+    @GetMapping("/top-mark_on-course/{courseId}")
+    public ResponseEntity<Double> topMarkOnCourse(@PathVariable Integer courseId){
+        return ResponseEntity.ok(service.getTopMarkOnCourse(courseId));
+    }
+
+    @GetMapping("/avg-mark-on-course/{courseId}")
+    public ResponseEntity<Double> avgMarkOnCourse(@PathVariable Integer courseId){
+        return ResponseEntity.ok(service.getAvgMarkOnCourse(courseId));
+    }
+
+    @GetMapping("/count-of-mark-on-course/{courseId}")
+    public ResponseEntity<Long> markCountOnCourse(@PathVariable Integer courseId){
+        return ResponseEntity.ok(service.getMarkCountOnCourse(courseId));
+    }
 }

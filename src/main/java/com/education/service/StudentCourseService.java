@@ -117,4 +117,74 @@ public class StudentCourseService {
     public List<StudentMarkDto> getStudentMarkOnCourse(Integer studentId, Integer courseId) {
         return entityToStudentMark(repository.findByStudentIdAndCourseIdOrderByCreatedDateDesc(studentId, courseId));
     }
+
+    public StudentMarkDto getStudentLastMark(Integer studentId) {
+        List<StudentMarkDto> result = entityToStudentMark(repository.findFirstByStudentIdOrderByCreatedDateDesc(studentId));
+        return (result.isEmpty() ? null : result.getFirst());
+    }
+
+    public List<StudentMarkDto> getStudentTop3Mark(Integer studentId) {
+        List<StudentCourse> list = repository.findByStudentIdOrderByMarkDesc(studentId);
+
+        List<StudentCourse> top3 = new LinkedList<>();
+        for(int i = 0; i < Math.max(3, list.size()); ++ i){
+            top3.add(list.get(i));
+        }
+        return entityToStudentMark(top3);
+    }
+
+    public StudentMarkDto getStudentFirstMark(Integer studentId) {
+        List<StudentMarkDto> result = entityToStudentMark(repository.findFirstByStudentIdOrderByCreatedDate(studentId));
+        return (result.isEmpty() ? null : result.getFirst());
+    }
+
+    public StudentMarkDto getFirstCourseFirstMark(Integer studentId) {
+        List<StudentMarkDto> response = entityToStudentMark(repository.findFirstByStudentIdOrderByCreatedDate(studentId));
+        return (response.isEmpty() ? null : response.getFirst());
+    }
+
+    public StudentMarkDto getStudentTopMarkOnCourse(Integer studentId, Integer courseId) {
+        List<StudentMarkDto> response = entityToStudentMark(repository.findFirstByStudentIdAndCourseIdOrderByMark(studentId, courseId));
+        return (response.isEmpty() ? null : response.getFirst());
+    }
+
+    public Double getStudentAvgMark(Integer studentId) {
+        List<StudentCourse> response = repository.findByStudentId(studentId);
+        double avg = 0;
+        for (StudentCourse student : response) {
+            avg += 1D*student.getMark();
+        }
+        return avg / response.size();
+    }
+
+    public Double getStudentAvgMarkOnCourse(Integer studentId, Integer courseId) {
+        List<StudentCourse> response = repository.findByStudentIdAndCourseId(studentId, courseId);
+        double avg = 0D;
+        for (StudentCourse student : response) {
+            avg += 1D*student.getMark();
+        }
+        return avg / response.size();
+    }
+
+    public Integer getMarkCountGreaterThenTarget(Integer studentId, Double targetMark) {
+        return repository.countByStudentIdAndMarkGreaterThan(studentId, targetMark);
+    }
+
+    public Double getTopMarkOnCourse(Integer courseId) {
+        StudentCourse sc = repository.findFirstByCourseIdOrderByMarkDesc(courseId);
+        return (sc == null ? null : sc.getMark());
+    }
+
+    public Double getAvgMarkOnCourse(Integer courseId) {
+        List<StudentCourse> response = repository.findByCourseId(courseId);
+        double avg = 0D;
+        for (StudentCourse studentCourse : response) {
+            avg += 1D*studentCourse.getMark();
+        }
+        return avg / response.size();
+    }
+
+    public Long getMarkCountOnCourse(Integer courseId) {
+        return repository.countByCourseId(courseId);
+    }
 }
