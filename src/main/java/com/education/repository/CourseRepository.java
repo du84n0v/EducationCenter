@@ -1,6 +1,8 @@
 package com.education.repository;
 
+import com.education.dto.CourseFullInfoDTO;
 import com.education.entity.Course;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.repository.CrudRepository;
 
 import java.time.LocalDateTime;
@@ -17,4 +19,5 @@ public interface CourseRepository extends CrudRepository<Course, Integer> {
     List<Course> findByPriceBetween(Double priceAfter, Double priceBefore);
 
     List<Course> findByCreatedDateBetween(LocalDateTime createdDateAfter, LocalDateTime createdDateBefore);
+
 }

@@ -1,8 +1,10 @@
 package com.education.controller;
 
 import com.education.dto.CourseDTO;
+import com.education.dto.CourseFullInfoDTO;
 import com.education.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -68,4 +70,12 @@ public class CourseController {
                                                         @PathVariable LocalDateTime finish){
         return ResponseEntity.ok(courseService.getCourseBetweenDates(start, finish));
     }
+
+    @PostMapping("/filter")
+    public ResponseEntity<PageImpl<CourseDTO>> filter(@RequestParam(name = "page", defaultValue = "1") Integer page,
+                                                      @RequestParam(name = "size", defaultValue = "10") Integer size,
+                                                      @RequestBody CourseFullInfoDTO dto){
+        return ResponseEntity.ok(courseService.courseFilter(dto, page-1, size));
+    }
+
 }

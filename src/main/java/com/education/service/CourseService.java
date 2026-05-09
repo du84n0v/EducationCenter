@@ -1,9 +1,13 @@
 package com.education.service;
 
 import com.education.dto.CourseDTO;
+import com.education.dto.CourseFullInfoDTO;
 import com.education.entity.Course;
 import com.education.repository.CourseRepository;
+import com.education.repository.custom.CourseCustomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -16,6 +20,8 @@ public class CourseService {
 
     @Autowired
     private CourseRepository courseRepository;
+    @Autowired
+    private CourseCustomRepository customRepository;
 
     public CourseDTO createCourse(CourseDTO dto) {
         Course course = new Course();
@@ -107,5 +113,16 @@ public class CourseService {
             result.add(courseToDTO(course));
         }
         return result;
+    }
+
+    public PageImpl<CourseDTO> courseFilter(CourseFullInfoDTO dto, Integer page, Integer size) {
+        PageImpl<Course> courses = customRepository.filter(dto, page, size);
+
+        List<CourseDTO> response = new LinkedList<>();
+        for (Course course : courses.getContent()) {
+            response.add(courseToDTO(course));
+        }
+
+        return new PageImpl<>(response, PageRequest.of(page, size), courses.getTotalElements());
     }
 }
