@@ -184,3 +184,12 @@ GET localhost:8080/student/by-date/2026-05-02T12:20:21.681920
 
 ###get between dates
 GET localhost:8080/student/by-between-date/2026-05-02T00:00:00/2026-05-02T23:59:59
+
+###filter
+POST localhost:8080/student/filter?page=2&size=3
+Content-Type: application/json
+
+{
+  "gender": "MALE",
+  "from": "2016-01-01"
+}

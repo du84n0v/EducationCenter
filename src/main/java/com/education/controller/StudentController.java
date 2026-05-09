@@ -1,9 +1,11 @@
 package com.education.controller;
 
 import com.education.dto.StudentDTO;
+import com.education.dto.StudentFullInfDTO;
 import com.education.enums.Gender;
 import com.education.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -77,6 +79,13 @@ public class StudentController {
     public ResponseEntity<List<StudentDTO>> getAllByGender(@PathVariable LocalDateTime start,
                                                            @PathVariable LocalDateTime end){
         return ResponseEntity.ok(studentService.getAllByBetweenDate(start, end));
+    }
+
+    @PostMapping("/filter")
+    public ResponseEntity<PageImpl<StudentDTO>> filter(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                                                              @RequestParam(value = "size", defaultValue = "10") Integer size,
+                                                              @RequestBody StudentFullInfDTO dto){
+        return ResponseEntity.ok(studentService.studentFilter(dto, page-1, size));
     }
 
 }

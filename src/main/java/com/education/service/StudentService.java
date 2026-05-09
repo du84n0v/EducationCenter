@@ -1,10 +1,15 @@
 package com.education.service;
 
 import com.education.dto.StudentDTO;
+import com.education.dto.StudentFullInfDTO;
 import com.education.entity.Student;
 import com.education.enums.Gender;
 import com.education.repository.StudentRepository;
+import com.education.repository.custom.StudentCustomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -17,6 +22,8 @@ public class StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private StudentCustomRepository customRepository;
 
     public List<StudentDTO> getAllStudent() {
         Iterable<Student> students = studentRepository.findAll();
@@ -139,5 +146,19 @@ public class StudentService {
             result.add(studentToDTO(student));
         }
         return result;
+    }
+
+    public PageImpl<StudentDTO> studentFilter(StudentFullInfDTO dto, Integer page, Integer size) {
+        Page<Student> result = customRepository.filter(dto, page, size);
+
+        long totalCount = result.getTotalElements();
+        List<Student> students = result.getContent();
+
+        List<StudentDTO> response = new LinkedList<>();
+        for (Student student : students) {
+            response.add(studentToDTO(student));
+        }
+
+        return new PageImpl<>(response, PageRequest.of(page, size), totalCount);
     }
 }
