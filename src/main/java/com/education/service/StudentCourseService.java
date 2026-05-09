@@ -3,7 +3,11 @@ package com.education.service;
 import com.education.dto.*;
 import com.education.entity.StudentCourse;
 import com.education.repository.StudentCourseRepository;
+import com.education.repository.custom.StudentCourseCustomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,6 +22,8 @@ public class StudentCourseService {
 
     @Autowired
     private StudentCourseRepository repository;
+    @Autowired
+    private StudentCourseCustomRepository customRepository;
 
     public StudentCourseDTO createStudentCourse(StudentCourseDTO dto) {
         StudentCourse studentCourse = new StudentCourse();
@@ -186,5 +192,16 @@ public class StudentCourseService {
 
     public Long getMarkCountOnCourse(Integer courseId) {
         return repository.countByCourseId(courseId);
+    }
+
+    public PageImpl<StudentCourseDTO> studentCourseFilter(StudentCourseFullInfoDTO dto, int page, Integer size) {
+        Page<StudentCourse> studentCourses = customRepository.filter(dto, page, size);
+
+        List<StudentCourseDTO> response = new LinkedList<>();
+        for (StudentCourse sc : studentCourses) {
+            response.add(entityToDTO(sc));
+        }
+
+        return new PageImpl<>(response, PageRequest.of(page, size), studentCourses.getTotalElements());
     }
 }

@@ -1,6 +1,8 @@
 package com.education.repository;
 
+import com.education.dto.StudentCourseFullInfoDTO;
 import com.education.entity.StudentCourse;
+import org.springframework.data.domain.Page;
 import org.springframework.data.repository.CrudRepository;
 
 import java.time.LocalDateTime;

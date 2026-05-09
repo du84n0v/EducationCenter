@@ -2,9 +2,11 @@ package com.education.controller;
 
 import com.education.dto.StudentCourseDTO;
 import com.education.dto.StudentCourseDetailed;
+import com.education.dto.StudentCourseFullInfoDTO;
 import com.education.dto.StudentMarkDto;
 import com.education.service.StudentCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -130,5 +132,12 @@ public class StudentCourseController {
     @GetMapping("/count-of-mark-on-course/{courseId}")
     public ResponseEntity<Long> markCountOnCourse(@PathVariable Integer courseId){
         return ResponseEntity.ok(service.getMarkCountOnCourse(courseId));
+    }
+
+    @PostMapping("/filter")
+    public ResponseEntity<PageImpl<StudentCourseDTO>> filter(@RequestParam(name = "page", defaultValue = "1") Integer page,
+                                                                     @RequestParam(name = "size", defaultValue = "10") Integer size,
+                                                                     @RequestBody StudentCourseFullInfoDTO dto){
+        return ResponseEntity.ok(service.studentCourseFilter(dto, page-1, size));
     }
 }

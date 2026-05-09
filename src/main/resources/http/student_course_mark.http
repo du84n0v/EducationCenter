@@ -1,0 +1,7 @@
+###filter
+POST localhost:8080/student-course/filter?page=3&size=3
+Content-Type: application/json
+
+{
+  "courseName": "J"
+}
